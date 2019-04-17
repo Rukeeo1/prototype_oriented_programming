@@ -7,7 +7,7 @@ it("type of john should return object", function() {
   expect(typeof john).toBe("object");
 });
 
-//not functioning properly 
+//not functioning properly
 it("shouldn't allow empty arguments", function() {
   let john = new createUsers.User("Ibrahim", "ibro@gmail.com", 22222);
   expect(john).toEqual({
@@ -30,6 +30,19 @@ it("shouldn't allow empty arguments", function() {
   });
 });
 
+//testing for read user method....
+describe("readUser function", function() {
+  it("should return the user with the entered id", function() {
+      expect(ute.readUser(1)).toEqual({ name: 'Rukee',
+      email: 'rukeeojigbo@gmail.com',
+      password: 2222,
+      id: 1 });
+  });
+
+  it('should return user not found',function(){
+      expect(ute.readUser(12)).toEqual("user not found");
+  })
+})
 //testing the user method....search for a single user...
 describe("searchForUser method", function() {
   it("", function() {
@@ -45,8 +58,6 @@ describe("searchForUser method", function() {
   });
 
   it("should accept only strings", function() {
-    expect(ute.searchForUser("")).toBe("User not found");
+    expect(ute.searchForUser("")).toBe("please enter a valid  string");
   });
 });
-
-

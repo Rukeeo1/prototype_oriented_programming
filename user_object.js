@@ -14,7 +14,8 @@ function User(name, email, password) {
 
 User.prototype.readUser = function(id) {
   let user = user_array.filter(item => item.id == id);
-  console.log(user.length == 0 ? "user not found" : user[0]);
+  console.log(user[0]);
+  return user.length == 0 ? "user not found" : user[0];
 };
 
 User.prototype.updateUserDetails = function(property, value, id) {

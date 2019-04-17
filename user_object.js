@@ -32,7 +32,7 @@ User.prototype.updateUserDetails = function(property, value, id) {
 
 User.prototype.searchForUser = function(name) {
   let returnedArr = user_array.filter(item => item.name == name);
-    return returnedArr.length == 0? 'User not found': returnedArr[0]
+  return returnedArr.length == 0 ? "User not found" : returnedArr[0];
 };
 
 //the function that extends...carries inheritance
@@ -69,5 +69,5 @@ Admin.prototype.deleteAllUser = function() {
 module.exports = {
   User,
   Admin,
-user_array
+  user_array
 };

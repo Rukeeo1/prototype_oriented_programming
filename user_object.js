@@ -14,6 +14,7 @@ function User(name, email, password) {
 
 let rukee = new User("rukee", "seyi", "9999");
 let seyi = new User("seyi", "fagbamila", "1111");
+let beautifulMARY = new User("mary", "fagbamila", "2222");
 console.log(rukee);
 console.log(seyi);
 
@@ -37,15 +38,32 @@ User.prototype.searchForUser = function(name) {
 };
 
 //the function that extends...carries inheritance
-function extend(Child, Parent){
-    Child.prototype = Object.create(Parent.prototype);
-    Child.prototype.constructor = Child;
+function extend(Child, Parent) {
+  Child.prototype = Object.create(Parent.prototype);
+  Child.prototype.constructor = Child;
 }
 
-function Admin(){
-
-}
+//admin constructor...
+function Admin() {}
 
 extend(Admin, User);
 
+//create an admin personel to test methods.
 let myFirstAdmin = new Admin();
+
+Admin.prototype.readAllUsers = function() {
+  user_array.forEach(function(item) {
+    console.log(item);
+  });
+};
+
+Admin.prototype.deleteUser = function(user) {
+  user_array = user_array.filter(function(userInArray) {
+    return userInArray.email != user;
+  });
+};
+
+Admin.prototype.deleteAllUser = function (){
+    user_array = [];
+    console.log('all users have been deleted');
+}

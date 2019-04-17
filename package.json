@@ -1,0 +1,15 @@
+{
+  "name": "prototype_oriented_programming_assignment",
+  "version": "1.0.0",
+  "main": "user_object.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}

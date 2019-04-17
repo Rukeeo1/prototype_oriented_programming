@@ -4,19 +4,13 @@ let user_array = [];
 let user_id = 0;
 //create user constructor function;
 function User(name, email, password) {
-  (this.name = name),
-    (this.email = email),
-    (this.password = password),
-    (id = this.id = user_id++);
+  this.name = name;
+  this.email = email;
+  this.password = password;
+  id = this.id = user_id++;
 
   user_array.push({ name, email, password, id });
 }
-
-// let rukee = new User("rukee", "seyi", "9999");
-// let seyi = new User("seyi", "fagbamila", "1111");
-// let beautifulMARY = new User("mary", "fagbamila", "2222");
-// console.log(rukee);
-// console.log(seyi);
 
 User.prototype.readUser = function(id) {
   let user = user_array.filter(item => item.id == id);
@@ -75,6 +69,6 @@ Admin.prototype.deleteAllUser = function() {
 };
 
 module.exports = {
-    User, 
-    Admin
-}
+  User,
+  Admin
+};

@@ -31,6 +31,9 @@ User.prototype.updateUserDetails = function(property, value, id) {
 };
 
 User.prototype.searchForUser = function(name) {
+  if (typeof name !== "string" || name == "") {
+    return "please enter a valid  string";
+  }
   let returnedArr = user_array.filter(item => item.name == name);
   return returnedArr.length == 0 ? "User not found" : returnedArr[0];
 };

@@ -1,12 +1,13 @@
 const createUsers = require("./user_object");
 //creating a global user for general test purposes....
-let ute = new createUsers.User('Ute','ute@gmail.com',1234);
+let ute = new createUsers.User("Ute", "ute@gmail.com", 1234);
 
 it("type of john should return object", function() {
   let john = new createUsers.User("Rukee", "rukeeojigbo@gmail.com", 2222);
   expect(typeof john).toBe("object");
 });
 
+//not functioning properly 
 it("shouldn't allow empty arguments", function() {
   let john = new createUsers.User("Ibrahim", "ibro@gmail.com", 22222);
   expect(john).toEqual({
@@ -17,6 +18,7 @@ it("shouldn't allow empty arguments", function() {
   });
 });
 
+//not functioning properly
 it("shouldn't allow empty arguments", function() {
   let mildred = new createUsers.User();
   console.log(mildred);
@@ -38,9 +40,12 @@ describe("searchForUser method", function() {
     );
   });
 
-  it('should return User not found, if wrong name is passed in', function(){
-    console.log(ute.searchForUser('Amakiri'),'hello');
-    expect(ute.searchForUser('Amakiri')).toBe("User not found");
+  it("should return User not found, if wrong name is passed in", function() {
+    expect(ute.searchForUser("sadiq")).toBe("User not found");
+  });
+
+  it("should accept only strings", function() {
+    expect(ute.searchForUser("")).toBe("User not found");
   });
 });
 

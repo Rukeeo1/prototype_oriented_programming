@@ -76,8 +76,18 @@ User.prototype.createOrder = function(Products) {
   dateOfOrder = new Date().getDate();
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
+  /**
+   *  this.UserId = UserId;
+  this.UserName = UserName;
+  this.timeOfOrder = timeOfOrder;
+  this.dateOfOrder = dateOfOrder;
+  this.order_Id = order_Id;
+  this.Products = Products;
+   */
 
-  console.log(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products);
+  //console.log(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products);
+  console.log('order was sucessfully made');
+  order_array.push(new Order(UserId,UserName,timeOfOrder,dateOfOrder,order_Id,Products));
 };
 
 //admin constructor...
@@ -115,8 +125,7 @@ function Order(UserId, UserName, timeOfOrder, dateOfOrder,order_Id,Products) {
   this.timeOfOrder = timeOfOrder;
   this.dateOfOrder = dateOfOrder;
   this.order_Id = order_Id;
-  this.Products = Products
-
+  this.Products = Products;
 }
 
 // module.exports = {

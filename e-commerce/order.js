@@ -82,6 +82,8 @@ User.prototype.getMyId = function() {
 
 //adding the create order method to the user
 User.prototype.makeAnOrder = function(Products) {
+  if (typeof Products !== "string") return "please enter a valid product";
+  //checking if product is not string????
   UserId = this.id;
   UserName = this.name;
   timeOfOrder = toHHMMSS(new Date().getTime());
@@ -89,7 +91,7 @@ User.prototype.makeAnOrder = function(Products) {
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
 
-  console.log("order was sucessfully made");
+  return "order was sucessfully made";
   order_array.push(
     new Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products)
   );
@@ -152,16 +154,10 @@ Admin.prototype.deleteUserOrder = function(id) {
   return order_array;
 };
 
-Admin.prototype.deleteAllOrders = function (){
-    order_array = [];
-    return order_array;
-}
-//delete user
-/**
-Update order details(*)
-Delete one order(*)
-Delete all orders(*)
- */
+Admin.prototype.deleteAllOrders = function() {
+  order_array = [];
+  return order_array;
+};
 
 //i am putting my order constructor here....just to see...even if i fill it should be at the top of the sheet;
 function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
@@ -173,8 +169,8 @@ function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
   this.Products = Products;
 }
 
-// module.exports = {
-//   User,
-//   Admin,
-//   user_array
-// };
+module.exports = {
+  User,
+  Admin,
+  user_array
+};

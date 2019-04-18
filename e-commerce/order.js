@@ -152,6 +152,10 @@ Admin.prototype.deleteUserOrder = function(id) {
   return order_array;
 };
 
+Admin.prototype.deleteAllOrders = function (){
+    order_array = [];
+    return order_array;
+}
 //delete user
 /**
 Update order details(*)

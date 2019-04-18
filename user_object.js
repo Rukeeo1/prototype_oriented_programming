@@ -67,9 +67,10 @@ Admin.prototype.deleteUser = function(user) {
   return user_array;
 };
 
-Admin.prototype.deleteAllUser = function() {
+Admin.prototype.deleteAllUsers = function() {
   user_array = [];
   console.log("all users have been deleted");
+  return user_array;
 };
 
 module.exports = {

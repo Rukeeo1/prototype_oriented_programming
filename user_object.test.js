@@ -106,7 +106,6 @@ describe("Admin should be able to read all users", function() {
   });
 });
 
-
 //change this to id later
 describe("deleteUser Function", function() {
   it("admin should be able a particular user", function() {
@@ -117,6 +116,12 @@ describe("deleteUser Function", function() {
       { email: undefined, id: 3, name: undefined, password: undefined }
     ]);
   });
+});
+
+describe('deleteAllUsers', function(){
+    it('admin should be able to delete all users', function(){
+        expect(myTestAdmin.deleteAllUsers()).toEqual([])
+    });
 });
 // console.log("-------");
 // console.log(createUsers.user_array)

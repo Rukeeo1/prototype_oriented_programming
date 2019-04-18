@@ -13,6 +13,7 @@ function User(name, email, password) {
 }
 
 User.prototype.readUser = function(id) {
+  //id should be a number
   let user = user_array.filter(item => item.id == id);
   console.log(user[0]);
   return user.length == 0 ? "user not found" : user[0];
@@ -23,11 +24,12 @@ User.prototype.updateUserDetails = function(property, value, id) {
   let user = user_array.filter(item => item.id == id);
   if (user.length == 0) {
     console.log("please enter a valid user id");
+    return "please enter a valid user id";
   }
-  console.log(user);
-  console.log("---still here boo---");
-  console.log((user[0].email = value)); //update's the user's data...
-  console.log(user);
+//   console.log(user);
+//   console.log("---still here boo---");
+  user[0][property] = value; //update's the user's data...
+  return user[0];
   //at this point i assume that the user has a valid user and an id has been returned
 };
 

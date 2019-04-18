@@ -13,6 +13,18 @@ function toHHMMSS(milliseconds) {
   return hours + ":" + minutes + ":" + seconds;
 }
 
+// //this function reads either the user array or orders for one item;
+// function readOne(intendedArray, id){
+//     // let user = user_array.filter(item => item.id == id);
+//     // console.log(user[0]);
+//     // return user.length == 0 ? "user not found" : user[0];
+
+//     let resultFromArray = intendedArray.filter(item.id == id);
+//     if(resultFromArray.length == 0 && intendedArray == user_array) return 'user not found';
+//     if(resultFromArray.length == 0 && intendedArray == order_array) return 'order not found';
+//     return intendedArray[0]
+// }
+
 //create a global array...
 let user_array = [];
 //global count of user_id
@@ -69,25 +81,18 @@ User.prototype.getMyId = function() {
 };
 
 //adding the create order method to the user
-User.prototype.createOrder = function(Products) {
+User.prototype.makeAnOrder = function(Products) {
   UserId = this.id;
   UserName = this.name;
   timeOfOrder = toHHMMSS(new Date().getTime());
   dateOfOrder = new Date().getDate();
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
-  /**
-   *  this.UserId = UserId;
-  this.UserName = UserName;
-  this.timeOfOrder = timeOfOrder;
-  this.dateOfOrder = dateOfOrder;
-  this.order_Id = order_Id;
-  this.Products = Products;
-   */
 
-  //console.log(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products);
-  console.log('order was sucessfully made');
-  order_array.push(new Order(UserId,UserName,timeOfOrder,dateOfOrder,order_Id,Products));
+  console.log("order was sucessfully made");
+  order_array.push(
+    new Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products)
+  );
 };
 
 //admin constructor...
@@ -118,8 +123,44 @@ Admin.prototype.deleteAllUsers = function() {
   return user_array;
 };
 
+Admin.prototype.readAllOrders = function() {
+  return order_array;
+};
+
+Admin.prototype.readOneOrder = function(id) {
+  let order = order_array.filter(item => item.order_Id == id);
+  console.log(order[0]);
+  return order.length == 0 ? "user not found" : order[0];
+};
+
+//update Orders
+Admin.prototype.updateOrderDetails = function(Products, value, id) {
+  let particularOrder = order_array.filter(item => item.id == id);
+  if (particularOrder.length == 0) {
+    return "please enter a valid order id";
+  }
+  particularOrder[0][Products] = value; //update's the user's data...
+  console.log("sucessfully updated");
+  return particularOrder[0];
+};
+
+//this is apparently a duplicate method
+Admin.prototype.deleteUserOrder = function(id) {
+  order_array = order_array.filter(function(orderInArray) {
+    return orderInArray.order_Id != id;
+  });
+  return order_array;
+};
+
+//delete user
+/**
+Update order details(*)
+Delete one order(*)
+Delete all orders(*)
+ */
+
 //i am putting my order constructor here....just to see...even if i fill it should be at the top of the sheet;
-function Order(UserId, UserName, timeOfOrder, dateOfOrder,order_Id,Products) {
+function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
   this.UserId = UserId;
   this.UserName = UserName;
   this.timeOfOrder = timeOfOrder;

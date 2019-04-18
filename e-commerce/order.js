@@ -1,7 +1,26 @@
+/* crazy helper functions*/
+/**these are functions were added to ease certain process...not exactly part of the core project */
+function toHHMMSS(milliseconds) {
+  //var milliseconds = parseInt((milliseconds % 1000) / 100),
+  (seconds = parseInt((milliseconds / 1000) % 60)),
+    (minutes = parseInt((milliseconds / (1000 * 60)) % 60)),
+    (hours = parseInt((milliseconds / (1000 * 60 * 60)) % 24));
+
+  hours = hours < 10 ? "0" + hours : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  return hours + ":" + minutes + ":" + seconds;
+}
+
 //create a global array...
 let user_array = [];
-//global count
+//global count of user_id
 let user_id = 0;
+//global array for orders
+let order_array = [];
+//global count for order_id
+let orderId = 0;
 //create user constructor function;
 function User(name, email, password) {
   this.name = name;
@@ -45,9 +64,21 @@ function extend(Child, Parent) {
 }
 
 //get user id
-User.prototype.getMyId = function(){
-    return id;
-}
+User.prototype.getMyId = function() {
+  return name;
+};
+
+//adding the create order method to the user
+User.prototype.createOrder = function(Products) {
+  UserId = this.id;
+  UserName = this.name;
+  timeOfOrder = toHHMMSS(new Date().getTime());
+  dateOfOrder = new Date().getDate();
+  order_Id = orderId++; //check the global space above for this guy.
+  Products = Products;
+
+  console.log(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products);
+};
 
 //admin constructor...
 function Admin() {}
@@ -58,8 +89,8 @@ extend(Admin, User);
 let myFirstAdmin = new Admin();
 
 Admin.prototype.readAllUsers = function() {
-    //changing for each to map here...
- return user_array.map(function(item) {
+  //changing for each to map here...
+  return user_array.map(function(item) {
     return item;
   });
 };
@@ -68,7 +99,6 @@ Admin.prototype.deleteUser = function(user) {
   user_array = user_array.filter(function(userInArray) {
     return userInArray.email != user;
   });
-
   return user_array;
 };
 
@@ -78,8 +108,19 @@ Admin.prototype.deleteAllUsers = function() {
   return user_array;
 };
 
-module.exports = {
-  User,
-  Admin,
-  user_array
-};
+//i am putting my order constructor here....just to see...even if i fill it should be at the top of the sheet;
+function Order(UserId, UserName, timeOfOrder, dateOfOrder,order_Id,Products) {
+  this.UserId = UserId;
+  this.UserName = UserName;
+  this.timeOfOrder = timeOfOrder;
+  this.dateOfOrder = dateOfOrder;
+  this.order_Id = order_Id;
+  this.Products = Products
+
+}
+
+// module.exports = {
+//   User,
+//   Admin,
+//   user_array
+// };

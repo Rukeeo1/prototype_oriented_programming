@@ -1,6 +1,7 @@
 const createUsers = require("./user_object");
 //creating a global user for general test purposes....
 let ute = new createUsers.User("Ute", "ute@gmail.com", 1234);
+let myTestAdmin = new createUsers.Admin();
 
 it("type of john should return object", function() {
   let john = new createUsers.User("Rukee", "rukeeojigbo@gmail.com", 2222);
@@ -63,9 +64,9 @@ describe("searchForUser method", function() {
   });
 });
 
-describe("UpdateUsr data", function() {
+describe("UpdateUser data", function() {
   it('should update a user"s details', function() {
-    console.log(ute);
+    //console.log(ute);
     expect(ute.updateUserDetails("email", "rukee@gmail.com", 0)).toEqual({
       email: "rukee@gmail.com",
       id: 0,
@@ -81,10 +82,21 @@ describe("UpdateUsr data", function() {
   });
 
   it("should be able to update user's name", function() {
-    expect(ute.updateUserDetails("name", "susan ojigbo", 0)).toEqual({"email": "rukee@gmail.com", "id": 0, "name": "susan ojigbo", "password": 1234});
+    expect(ute.updateUserDetails("name", "susan ojigbo", 0)).toEqual({
+      email: "rukee@gmail.com",
+      id: 0,
+      name: "susan ojigbo",
+      password: 1234
+    });
   });
-  console.log(ute);
+  //console.log(ute);
 });
 
+describe("Admin should be able to read all users", function() {
+  console.log(myTestAdmin.readAllUsers());
+  it("return all the registered users", function() {
+    expect(myTestAdmin.readAllUsers()).toEqual([{"email": "rukee@gmail.com", "id": 0, "name": "susan ojigbo", "password": 1234}, {"email": "rukeeojigbo@gmail.com", "id": 1, "name": "Rukee", "password": 2222}, {"email": "ibro@gmail.com", "id": 2, "name": "Ibrahim", "password": 22222}, {"email": undefined, "id": 3, "name": undefined, "password": undefined}, {"email": "amk@gmail.com", "id": 4, "name": "Amakiri", "password": 2222}]);
+  });
+});
 // console.log("-------");
 // console.log(createUsers.user_array)

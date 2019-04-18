@@ -26,11 +26,8 @@ User.prototype.updateUserDetails = function(property, value, id) {
     console.log("please enter a valid user id");
     return "please enter a valid user id";
   }
-//   console.log(user);
-//   console.log("---still here boo---");
   user[0][property] = value; //update's the user's data...
   return user[0];
-  //at this point i assume that the user has a valid user and an id has been returned
 };
 
 User.prototype.searchForUser = function(name) {
@@ -56,8 +53,9 @@ extend(Admin, User);
 let myFirstAdmin = new Admin();
 
 Admin.prototype.readAllUsers = function() {
-  user_array.forEach(function(item) {
-    console.log(item);
+    //changing for each to map here...
+ return user_array.map(function(item) {
+    return item;
   });
 };
 

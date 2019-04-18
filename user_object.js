@@ -63,6 +63,8 @@ Admin.prototype.deleteUser = function(user) {
   user_array = user_array.filter(function(userInArray) {
     return userInArray.email != user;
   });
+
+  return user_array;
 };
 
 Admin.prototype.deleteAllUser = function() {

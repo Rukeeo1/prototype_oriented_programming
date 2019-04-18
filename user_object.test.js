@@ -95,7 +95,27 @@ describe("UpdateUser data", function() {
 describe("Admin should be able to read all users", function() {
   console.log(myTestAdmin.readAllUsers());
   it("return all the registered users", function() {
-    expect(myTestAdmin.readAllUsers()).toEqual([{"email": "rukee@gmail.com", "id": 0, "name": "susan ojigbo", "password": 1234}, {"email": "rukeeojigbo@gmail.com", "id": 1, "name": "Rukee", "password": 2222}, {"email": "ibro@gmail.com", "id": 2, "name": "Ibrahim", "password": 22222}, {"email": undefined, "id": 3, "name": undefined, "password": undefined}, {"email": "amk@gmail.com", "id": 4, "name": "Amakiri", "password": 2222}]);
+    //when i update name's above, this test is likely to fail....
+    expect(myTestAdmin.readAllUsers()).toEqual([
+      { email: "rukee@gmail.com", id: 0, name: "susan ojigbo", password: 1234 },
+      { email: "rukeeojigbo@gmail.com", id: 1, name: "Rukee", password: 2222 },
+      { email: "ibro@gmail.com", id: 2, name: "Ibrahim", password: 22222 },
+      { email: undefined, id: 3, name: undefined, password: undefined },
+      { email: "amk@gmail.com", id: 4, name: "Amakiri", password: 2222 }
+    ]);
+  });
+});
+
+
+//change this to id later
+describe("deleteUser Function", function() {
+  it("admin should be able a particular user", function() {
+    expect(myTestAdmin.deleteUser("amk@gmail.com")).toEqual([
+      { email: "rukee@gmail.com", id: 0, name: "susan ojigbo", password: 1234 },
+      { email: "rukeeojigbo@gmail.com", id: 1, name: "Rukee", password: 2222 },
+      { email: "ibro@gmail.com", id: 2, name: "Ibrahim", password: 22222 },
+      { email: undefined, id: 3, name: undefined, password: undefined }
+    ]);
   });
 });
 // console.log("-------");

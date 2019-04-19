@@ -70,6 +70,9 @@ describe("readAllOrders", function() {
 });
 
 describe("readOneOrder", function() {
+  it('should return "order not found" when a wrong id is passed in', function() {
+    expect(myAdmin.readOneOrder(40)).toBe("Order not found");
+  });
   it("should return the order belonging to that id", function() {
     expect(myAdmin.readOneOrder(1)).toEqual({
       UserId: 0,
@@ -80,6 +83,30 @@ describe("readOneOrder", function() {
       Products: "akamu"
     });
   });
+});
+
+//update updateOrderDetails
+describe("updateOrderDetails -- testing", function() {
+  it('should return "please enter a valid order id"', function() {
+    expect(myAdmin.updateOrderDetails(90)).toBe(
+      "please ensure that the first argument is a string and the second a number"
+    );
+  });
+
+  it('should return the upated value of the order', function(){
+      expect(myAdmin.updateOrderDetails('I just Updated this', 1)).toEqual({
+        Products: "I just Updated this",
+        UserId: 0,
+        UserName: "Rukee",
+        dateOfOrder: 19,
+        order_Id: 1,
+        timeOfOrder: "07:23:03"
+      })
+  });
+
+  it('should return please "enter a valid order id" when an invalid user-Id is passed in', function(){
+      expect(myAdmin.updateOrderDetails('coke', 99)).toBe( "please enter a valid order id");
+  })
 });
 
 /**

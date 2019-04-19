@@ -75,7 +75,7 @@ User.prototype.makeAnOrder = function(Products) {
   UserId = this.id;
   UserName = this.name;
   //timeOfOrder = toHHMMSS(new Date().getTime());
-  timeOfOrder = '07:23:03';//mocking the time to make it stay permanently...
+  timeOfOrder = "07:23:03"; //mocking the time to make it stay permanently...
   dateOfOrder = new Date().getDate();
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
@@ -121,15 +121,23 @@ Admin.prototype.readAllOrders = function() {
 Admin.prototype.readOneOrder = function(id) {
   let order = order_array.filter(item => item.order_Id == id);
   console.log(order[0]);
-  return order.length == 0 ? "user not found" : order[0];
+  return order.length == 0 ? "Order not found" : order[0];
 };
 
 //update Orders//taking out products
 Admin.prototype.updateOrderDetails = function(value, id) {
-  let particularOrder = order_array.filter(item => item.id == id);
+  if (typeof arguments[0] !== "string" || typeof arguments[1] !== "number") {
+    return "please ensure that the first argument is a string and the second a number";
+  }
+
+  console.log(order_array)
+  let particularOrder = order_array.filter(item => item.order_Id == id);
+  console.log(particularOrder)
+
   if (particularOrder.length == 0) {
     return "please enter a valid order id";
   }
+
   particularOrder[0]["Products"] = value; //update's the user's data...
   console.log("sucessfully updated");
   return particularOrder[0];
@@ -139,7 +147,7 @@ Admin.prototype.updateOrderDetails = function(value, id) {
 Admin.prototype.deleteUserOrder = function(id) {
   order_array = order_array.filter(function(orderInArray) {
     return orderInArray.order_Id != id;
-  });  
+  });
   console.log(order_array);
   return order_array;
 };

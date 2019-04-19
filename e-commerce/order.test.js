@@ -31,9 +31,9 @@ describe("readAllOrders", function() {
     expect(typeof myAdmin.readAllUsers()).toBe("object");
   });
 
-  
   it("should return an array containing the total orders made", function() {
-    expect(myAdmin.readAllOrders()).toEqual([{
+    expect(myAdmin.readAllOrders()).toEqual([
+      {
         Products: "akamu",
         UserId: 0,
         UserName: "Rukee",
@@ -64,8 +64,21 @@ describe("readAllOrders", function() {
         dateOfOrder: 19,
         order_Id: 4,
         timeOfOrder: "07:23:03"
-      }]);
+      }
+    ]);
+  });
+});
 
+describe("readOneOrder", function() {
+  it("should return the order belonging to that id", function() {
+    expect(myAdmin.readOneOrder(1)).toEqual({
+      UserId: 0,
+      UserName: "Rukee",
+      timeOfOrder: "07:23:03",
+      dateOfOrder: 19,
+      order_Id: 1,
+      Products: "akamu"
+    });
   });
 });
 

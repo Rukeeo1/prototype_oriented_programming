@@ -139,7 +139,7 @@ Admin.prototype.updateOrderDetails = function(value, id) {
 Admin.prototype.deleteUserOrder = function(id) {
   order_array = order_array.filter(function(orderInArray) {
     return orderInArray.order_Id != id;
-  });
+  });  
   console.log(order_array);
   return order_array;
 };

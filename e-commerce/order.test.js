@@ -110,16 +110,6 @@ describe("updateOrderDetails -- testing", function() {
 });
 
 
-/**
- * Create a new order
-Read all the orders(*)
-Read one order by its ID(*)
-Update order details(*)
-Delete one order(*)
-Delete all orders(*)
-
- */
-
 //should delete one user....
 describe("deleteUserOrder", function() {
   it("should return the total orders with the deleted one out", function() {
@@ -153,11 +143,9 @@ describe("deleteUserOrder", function() {
   });
 });
 
-/*
+
 describe("Delete all orders", function() {
   it("should return an empty array when called", function() {
     expect(myAdmin.deleteAllOrders()).toEqual([]);
   });
 });
-
-*/

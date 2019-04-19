@@ -1,19 +1,22 @@
 //this file is going to test the order methods are admin methods
 const createOrder = require("./order");
 
+//create dummy users....
 let userOne = new createOrder.User("Rukee", "rukeeojigbo@gmail.com", 1001);
 let userTwo = new createOrder.User("Seyi", "seyimils@gmail.com", 1002);
 let userThree = new createOrder.User("GoodLuck", "goodluck@gmail.com", 1003);
 
-//the orders made...
+//make dummy orders...
 userOne.makeAnOrder("akamu");
 userTwo.makeAnOrder("sweet orange");
-userThree.makeAnOrder('soft drink');
+userThree.makeAnOrder("soft drink");
 
 let myAdmin = new createOrder.Admin();
 
+//actual tests...
 describe("MakeAnOrder Method", function() {
   it("should return a string on successful creation of the order", function() {
+    //made another order here...this adds to the list of orders in the array
     expect(userOne.makeAnOrder("Akara")).toBe("order was sucessfully made");
   });
 
@@ -28,34 +31,42 @@ describe("readAllOrders", function() {
     expect(typeof myAdmin.readAllUsers()).toBe("object");
   });
 
-  // //   it("should return an array containing the total orders made", function() {
-  // //     expect(myAdmin.readAllOrders()).toEqual([
-  // //       {
-  // //         UserId: 0,
-  // //         UserName: "Rukee",
-  // //         timeOfOrder: "15:33:20",
-  // //         dateOfOrder: 18,
-  // //         order_Id: 1,
-  // //         Products: "akamu"
-  // //       },
-  // //       {
-  // //         UserId: 1,
-  // //         UserName: "Seyi",
-  // //         timeOfOrder: "15:33:20",
-  // //         dateOfOrder: 18,
-  // //         order_Id: 2,
-  // //         Products: "sweet orange"
-  // //       },
-  // //       {
-  // //         UserId: 0,
-  // //         UserName: "Rukee",
-  // //         timeOfOrder: "15:33:20",
-  // //         dateOfOrder: 18,
-  // //         order_Id: 3,
-  // //         Products: "Akara"
-  // //       }
-  // //     ]);
-  //   });
+  
+  it("should return an array containing the total orders made", function() {
+    expect(myAdmin.readAllOrders()).toEqual([{
+        Products: "akamu",
+        UserId: 0,
+        UserName: "Rukee",
+        dateOfOrder: 19,
+        order_Id: 1,
+        timeOfOrder: "07:23:03"
+      },
+      {
+        Products: "sweet orange",
+        UserId: 1,
+        UserName: "Seyi",
+        dateOfOrder: 19,
+        order_Id: 2,
+        timeOfOrder: "07:23:03"
+      },
+      {
+        Products: "soft drink",
+        UserId: 2,
+        UserName: "GoodLuck",
+        dateOfOrder: 19,
+        order_Id: 3,
+        timeOfOrder: "07:23:03"
+      },
+      {
+        Products: "Akara",
+        UserId: 0,
+        UserName: "Rukee",
+        dateOfOrder: 19,
+        order_Id: 4,
+        timeOfOrder: "07:23:03"
+      }]);
+
+  });
 });
 
 /**
@@ -67,12 +78,37 @@ Delete one order(*)
 Delete all orders(*)
 
  */
-console.log(myAdmin.readAllOrders());
-describe("delete a specific order", function() {
+/*
+//should delete one user....
+describe("deleteUserOrder", function() {
   it("should return the total orders with the deleted one out", function() {
-      console.log(myAdmin.deleteUserOrder(1))
-   // expect(myAdmin.deleteUserOrder(1)).toEqual([]);
-
+    // console.log(myAdmin.deleteUserOrder(1));
+    expect(myAdmin.deleteUserOrder(1)).toEqual([
+      {
+        UserId: 1,
+        UserName: "Seyi",
+        timeOfOrder: "07:23:03",
+        dateOfOrder: 19,
+        order_Id: 2,
+        Products: "sweet orange"
+      },
+      {
+        UserId: 2,
+        UserName: "GoodLuck",
+        timeOfOrder: "07:23:03",
+        dateOfOrder: 19,
+        order_Id: 3,
+        Products: "soft drink"
+      },
+      {
+        UserId: 0,
+        UserName: "Rukee",
+        timeOfOrder: "07:23:03",
+        dateOfOrder: 19,
+        order_Id: 4,
+        Products: "Akara"
+      }
+    ]);
   });
 });
 
@@ -82,4 +118,4 @@ describe("Delete all orders", function() {
   });
 });
 
-
+*/

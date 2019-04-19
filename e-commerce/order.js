@@ -13,18 +13,6 @@ function toHHMMSS(milliseconds) {
   return hours + ":" + minutes + ":" + seconds;
 }
 
-// //this function reads either the user array or orders for one item;
-// function readOne(intendedArray, id){
-//     // let user = user_array.filter(item => item.id == id);
-//     // console.log(user[0]);
-//     // return user.length == 0 ? "user not found" : user[0];
-
-//     let resultFromArray = intendedArray.filter(item.id == id);
-//     if(resultFromArray.length == 0 && intendedArray == user_array) return 'user not found';
-//     if(resultFromArray.length == 0 && intendedArray == order_array) return 'order not found';
-//     return intendedArray[0]
-// }
-
 //create a global array...
 let user_array = [];
 //global count of user_id
@@ -32,7 +20,7 @@ let user_id = 0;
 //global array for orders
 let order_array = [];
 //global count for order_id
-let orderId = 0;
+let orderId = 1;
 //create user constructor function;
 function User(name, email, password) {
   this.name = name;
@@ -90,11 +78,11 @@ User.prototype.makeAnOrder = function(Products) {
   dateOfOrder = new Date().getDate();
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
-
-  return "order was sucessfully made";
   order_array.push(
     new Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products)
   );
+  //console.log(order_array);
+  return "order was sucessfully made";
 };
 
 //admin constructor...
@@ -135,13 +123,13 @@ Admin.prototype.readOneOrder = function(id) {
   return order.length == 0 ? "user not found" : order[0];
 };
 
-//update Orders
-Admin.prototype.updateOrderDetails = function(Products, value, id) {
+//update Orders//taking out products
+Admin.prototype.updateOrderDetails = function(value, id) {
   let particularOrder = order_array.filter(item => item.id == id);
   if (particularOrder.length == 0) {
     return "please enter a valid order id";
   }
-  particularOrder[0][Products] = value; //update's the user's data...
+  particularOrder[0]["Products"] = value; //update's the user's data...
   console.log("sucessfully updated");
   return particularOrder[0];
 };
@@ -151,6 +139,7 @@ Admin.prototype.deleteUserOrder = function(id) {
   order_array = order_array.filter(function(orderInArray) {
     return orderInArray.order_Id != id;
   });
+  console.log(order_array);
   return order_array;
 };
 
@@ -172,5 +161,6 @@ function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
 module.exports = {
   User,
   Admin,
-  user_array
+  user_array,
+  order_array
 };

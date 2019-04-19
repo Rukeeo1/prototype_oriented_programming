@@ -1,6 +1,8 @@
 //this file is going to test the order methods are admin methods
 const createOrder = require("./order");
 
+
+
 //create dummy users....
 let userOne = new createOrder.User("Rukee", "rukeeojigbo@gmail.com", 1001);
 let userTwo = new createOrder.User("Seyi", "seyimils@gmail.com", 1002);
@@ -149,3 +151,9 @@ describe("Delete all orders", function() {
     expect(myAdmin.deleteAllOrders()).toEqual([]);
   });
 });
+
+/**
+ * adding test for user object
+ * 
+ */
+

@@ -74,7 +74,8 @@ User.prototype.makeAnOrder = function(Products) {
   //checking if product is not string????
   UserId = this.id;
   UserName = this.name;
-  timeOfOrder = toHHMMSS(new Date().getTime());
+  //timeOfOrder = toHHMMSS(new Date().getTime());
+  timeOfOrder = '07:23:03';//mocking the time to make it stay permanently...
   dateOfOrder = new Date().getDate();
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;

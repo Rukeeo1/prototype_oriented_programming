@@ -118,10 +118,10 @@ describe("deleteUser Function", function() {
   });
 });
 
-describe('deleteAllUsers', function(){
-    it('admin should be able to delete all users', function(){
-        expect(myTestAdmin.deleteAllUsers()).toEqual([])
-    });
+describe("deleteAllUsers", function() {
+  it("admin should be able to delete all users", function() {
+    expect(myTestAdmin.deleteAllUsers()).toEqual([]);
+  });
 });
 // console.log("-------");
 // console.log(createUsers.user_array)

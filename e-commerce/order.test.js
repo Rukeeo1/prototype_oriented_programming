@@ -1,8 +1,6 @@
 //this file is going to test the order methods are admin methods
 const createOrder = require("./order");
 
-
-
 //create dummy users....
 let userOne = new createOrder.User("Rukee", "rukeeojigbo@gmail.com", 1001);
 let userTwo = new createOrder.User("Seyi", "seyimils@gmail.com", 1002);
@@ -95,22 +93,23 @@ describe("updateOrderDetails -- testing", function() {
     );
   });
 
-  it('should return the upated value of the order', function(){
-      expect(myAdmin.updateOrderDetails('I just Updated this', 1)).toEqual({
-        Products: "I just Updated this",
-        UserId: 0,
-        UserName: "Rukee",
-        dateOfOrder: 19,
-        order_Id: 1,
-        timeOfOrder: "07:23:03"
-      })
+  it("should return the upated value of the order", function() {
+    expect(myAdmin.updateOrderDetails("I just Updated this", 1)).toEqual({
+      Products: "I just Updated this",
+      UserId: 0,
+      UserName: "Rukee",
+      dateOfOrder: 19,
+      order_Id: 1,
+      timeOfOrder: "07:23:03"
+    });
   });
 
-  it('should return please "enter a valid order id" when an invalid user-Id is passed in', function(){
-      expect(myAdmin.updateOrderDetails('coke', 99)).toBe( "please enter a valid order id");
-  })
+  it('should return please "enter a valid order id" when an invalid user-Id is passed in', function() {
+    expect(myAdmin.updateOrderDetails("coke", 99)).toBe(
+      "please enter a valid order id"
+    );
+  });
 });
-
 
 //should delete one user....
 describe("deleteUserOrder", function() {
@@ -145,7 +144,6 @@ describe("deleteUserOrder", function() {
   });
 });
 
-
 describe("Delete all orders", function() {
   it("should return an empty array when called", function() {
     expect(myAdmin.deleteAllOrders()).toEqual([]);
@@ -154,6 +152,5 @@ describe("Delete all orders", function() {
 
 /**
  * adding test for user object
- * 
+ *
  */
-

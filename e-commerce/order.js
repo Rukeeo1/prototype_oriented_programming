@@ -23,6 +23,15 @@ let order_array = [];
 let orderId = 1;
 //create user constructor function;
 function User(name, email, password) {
+  if (
+    typeof name !== "string" &&
+    typeof email !== "string" &&
+    arguments.length == 0
+  ) {
+    throw new Error(
+      'Please ensure name and email are strings and arguments aren"t empty'
+    );
+  }
   this.name = name;
   this.email = email;
   this.password = password;
@@ -35,15 +44,16 @@ User.prototype.readUser = function(id) {
   //id should be a number
   let user = user_array.filter(item => item.id == id);
   console.log(user[0]);
-  return user.length == 0 ? "user not found" : user[0];
+  return user.length == 0 ? "User not found" : user[0];
 };
 
 User.prototype.updateUserDetails = function(property, value, id) {
   console.log(this.id, this.name);
   //search for user with the supplied id
   let user = user_array.filter(item => item.id == id);
+
   if (user.length == 0) {
-    console.log("please enter a valid user id");
+    // console.log("please enter a valid user id");
     return "please enter a valid user id";
   }
 
@@ -53,6 +63,7 @@ User.prototype.updateUserDetails = function(property, value, id) {
     return user[0];
   }
 
+  //triggers if the entered parameters ...dont meet any of the above conditions
   return console.log("can't update this user's detail");
 };
 
@@ -83,7 +94,8 @@ User.prototype.makeAnOrder = function(Products) {
   UserName = this.name;
   //timeOfOrder = toHHMMSS(new Date().getTime());
   timeOfOrder = "07:23:03"; //mocking the time to make it stay permanently...
-  dateOfOrder = new Date().getDate();
+  // dateOfOrder = new Date().getDate();
+  dateOfOrder = 19; //making time permanent for mocking purposes and testing purposes.
   order_Id = orderId++; //check the global space above for this guy.
   Products = Products;
   order_array.push(
@@ -155,7 +167,7 @@ Admin.prototype.deleteUserOrder = function(id) {
   order_array = order_array.filter(function(orderInArray) {
     return orderInArray.order_Id != id;
   });
-  console.log(order_array);
+  // console.log(order_array);
   return order_array;
 };
 
@@ -174,9 +186,9 @@ function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
   this.Products = Products;
 }
 
-// module.exports = {
-//   User,
-//   Admin,
-//   user_array,
-//   order_array
-// };
+module.exports = {
+  User,
+  Admin,
+  user_array,
+  order_array
+};

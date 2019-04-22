@@ -9,7 +9,7 @@ it("type of john should return object", function() {
 });
 
 //not functioning properly
-it("shouldn't allow empty arguments", function() {
+it("should return user object", function() {
   let john = new createUsers.User("Ibrahim", "ibro@gmail.com", 22222);
   expect(john).toEqual({
     email: "ibro@gmail.com",

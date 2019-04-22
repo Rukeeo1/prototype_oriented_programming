@@ -65,7 +65,7 @@ function extend(Child, Parent) {
 
 //get user id
 User.prototype.getMyId = function() {
-  return name;
+  return this.id;
 };
 
 //adding the create order method to the user

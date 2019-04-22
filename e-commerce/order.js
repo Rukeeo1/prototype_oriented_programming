@@ -39,14 +39,21 @@ User.prototype.readUser = function(id) {
 };
 
 User.prototype.updateUserDetails = function(property, value, id) {
+  console.log(this.id, this.name);
   //search for user with the supplied id
   let user = user_array.filter(item => item.id == id);
   if (user.length == 0) {
     console.log("please enter a valid user id");
     return "please enter a valid user id";
   }
-  user[0][property] = value; //update's the user's data...
-  return user[0];
+
+  //it has to be the user or the admin...
+  if (this.id == id || this instanceof Admin) {
+    user[0][property] = value; //update's the user's data...
+    return user[0];
+  }
+
+  return console.log("can't update this user's detail");
 };
 
 User.prototype.searchForUser = function(name) {
@@ -130,9 +137,9 @@ Admin.prototype.updateOrderDetails = function(value, id) {
     return "please ensure that the first argument is a string and the second a number";
   }
 
-  console.log(order_array)
+  console.log(order_array);
   let particularOrder = order_array.filter(item => item.order_Id == id);
-  console.log(particularOrder)
+  console.log(particularOrder);
 
   if (particularOrder.length == 0) {
     return "please enter a valid order id";
@@ -167,9 +174,9 @@ function Order(UserId, UserName, timeOfOrder, dateOfOrder, order_Id, Products) {
   this.Products = Products;
 }
 
-module.exports = {
-  User,
-  Admin,
-  user_array,
-  order_array
-};
+// module.exports = {
+//   User,
+//   Admin,
+//   user_array,
+//   order_array
+// };
